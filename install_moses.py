@@ -53,8 +53,8 @@ homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
 # Download repo and training tools
-Process(target = download_moses_github_repo).start()
-Process(target = download_moses_training_tools).start()
+download_moses_github_repo()
+download_moses_training_tools()
 
 # Install moses
 #install_moses()
