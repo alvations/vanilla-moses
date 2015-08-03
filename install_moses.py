@@ -42,11 +42,11 @@ def install_moses():
     subprocess.Popen.wait()
     
 def install_dependencies():
-    dependencies = str('git subversion make libtool gcc g++ libboost-dev ' 
-                       'tcl-dev tk-dev zlib1g-dev libbz2-dev python-dev')
+    dependencies = str('g++ git subversion automake libtool zlib1g-dev '
+                       'libboost-all-dev libbz2-dev liblzma-dev '
+                       'python-dev graphviz libgoogle-perftools-dev')
     subprocess.Popen('apt-get install '+dependencies)
     subprocess.Popen.wait()
-    
     
 ##############################################################################
 
