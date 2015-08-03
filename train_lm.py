@@ -19,7 +19,7 @@ def tokenize_monolingual_data(langs=None):
     paradir = 'wmt-data/parallel'
     cmds = []
     for _lang in os.listdir(monodir):
-        if _lang not in langs and langs is not None:
+        if langs is not None and _lang not in langs:
             continue
         if os.path.exists(tokdir+_lang+'.all'):
             continue
@@ -36,7 +36,7 @@ def train_language_model(n=6, langs=None):
     lmdir = homedir + '/wmt-data/lm/'
     os.makedirs(lmdir, exist_ok=True)
     for _lang in os.listdir(tokdir):
-        if _lang not in langs and langs is not None:
+        if langs is not None and _lang not in langs:
             continue
         if os.path.exists(lmdir+ 'lm.'+n+'gram.'+_lang+'.arpa.gz'):
             continue
