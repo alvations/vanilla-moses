@@ -35,7 +35,7 @@ def download_moses_training_tools():
     proc = run_command('wget -r --no-parent --reject "index.html*" %s' % 
                        moses_training_tools)
     proc.wait()
-    path_to_training_tool = str('www.statmt.org/moses/RELEASE-3.0/binaries/'
+    path_to_training_tools = str('www.statmt.org/moses/RELEASE-3.0/binaries/'
                                 'linux-64bit/training-tools/')
     proc = run_command('mv '+ path_to_training_tools + ' moses-training-tools')
 
@@ -72,8 +72,9 @@ os.chdir(homedir)
 install_dependencies()
 
 # Download repo and training tools
-Process(target = download_moses_github_repo).start()
-Process(target = download_moses_training_tools).start()
+repo_thread = Process(target = download_moses_github_repo).start()
+tool_thread = Process(target = download_moses_training_tools).start()
+repo_thread.join(); tool_thread.join()
 
 # Install moses
 install_moses()
