@@ -21,6 +21,8 @@ def download_wmt_parallel(corpus_name):
     url = wmt_data.parallel[corpus_name]
     parallelized_download('wget', [url])
     run_command('tar zxvf *.tgz')
+    run_command('tar -xvf *.tar')
+    #run_command('tar -xvf *.tar.gz')
     os.chdir('../../..')
 
 def get_all_wmt_monolingual():
