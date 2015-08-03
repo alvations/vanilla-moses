@@ -23,5 +23,7 @@ def parallelized_commandline(command, files, arguments="",
         if p.poll() is None:
             p.wait()
             
-def parallelized_download(command, urls):
-    parallelized_commandline(command, urls, file_exists=file_from_url_exists)
+def parallelized_download(command, urls, arguments="", max_processes=2):
+    parallelized_commandline(command, urls, file_exists=file_from_url_exists,
+                             arguments=arguments, max_processes=max_processes) 
+                             
