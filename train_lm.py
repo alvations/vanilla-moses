@@ -49,16 +49,16 @@ def train_language_model(n=6, langs=None):
         
 if __name__ == '__main__':
     # Download all data.
-    if len(sys.argv) == 1:
+    sysargv = sys.argv
+    if len(sysargv) == 1:
         tokenize_monolingual_data()
         train_language_model()
-    if len(sys.argv) == 2:
-        sysargv = sys.argv[1:]
+    if len(sysargv) == 2:
+        sysargv = sys.argv
         assert int(sysargv[1])
         tokenize_monolingual_data()
         train_language_model(n)
-    if len(sys.argv) > 2:
-        sysargv = sys.argv[1:]
+    if len(sysargv) > 2:
         n, langs = sysargv[1], sysargv[2:]
         assert int(sysargv[1])
         assert all(l for l in langs if l in wmt_data.wmtlangs)
