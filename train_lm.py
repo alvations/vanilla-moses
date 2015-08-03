@@ -27,10 +27,9 @@ def tokenize_monolingual_data(langs=None):
                        'mosesdecoder/scripts/tokenizer/tokenizer.perl -threads 10 -l', _lang, 
                        '>', tokdir+_lang+'.all'])
         cmds.append(cmd)
-    print(cmds)
     parallized_run_command(cmds, 10)
 
-def train_language_model(n=6, langs=None):
+def train_language_model(n=6, langs=None, parallelized=False):
     homedir = os.path.expanduser("~")
     os.chdir(homedir)
     lmdir = homedir + '/wmt-data/lm/'
@@ -47,9 +46,11 @@ def train_language_model(n=6, langs=None):
         cmd+= tokdir + _lang
         cmd+= '| gzip > ' + lmdir+ 'lm.'+n+'gram.'+_lang[:-4]+'.arpa.gz'
         cmds.append(cmd)
-    print(cmds)
-    parallized_run_command(cmds, 10)
-    
+
+    for cmd in cmds:
+        run_command(cmd)
+    #parallized_run_command(cmds, 10)
+
 if __name__ == '__main__':
     # Download all data.
     sysargv = sys.argv
@@ -62,10 +63,3 @@ if __name__ == '__main__':
         assert int(sysargv[1])
         tokenize_monolingual_data()
         train_language_model(n)
-    if len(sysargv) > 2:
-        n, langs = sysargv[1], sysargv[2:]
-        assert int(sysargv[1])
-        assert all(l for l in langs if l in wmt_data.wmtlangs)
-        tokenize_monolingual_data(langs)
-        train_language_model(n, langs)
-         
