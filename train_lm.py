@@ -53,6 +53,7 @@ if __name__ == '__main__':
         tokenize_monolingual_data()
         train_language_model()
     if len(sys.argv) == 2:
+        sysargv = sys.argv[1:]
         assert int(sysargv[1])
         tokenize_monolingual_data()
         train_language_model(n)
