@@ -44,7 +44,7 @@ def train_language_model(n=6, langs=None):
         if os.path.exists(lmdir+ 'lm.'+n+'gram.'+_lang[:-4]+'.arpa.gz'):
             continue
         cmd = 'mosesdecoder/bin/lmplz --order ' + n + ' -S 80% -T /tmp <'
-        cmd+= lmdir + _lang
+        cmd+= tokdir + _lang
         cmd+= '| gzip > ' + lmdir+ 'lm.'+n+'gram.'+_lang[:-4]+'.arpa.gz'
         cmds.append(cmd)
     print(cmds)
