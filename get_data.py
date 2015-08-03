@@ -34,6 +34,5 @@ def get_all_wmtdata():
     thread_mono = Process(target = get_all_wmt_monolingual).start()
     thread_para = Process(target = get_all_wmt_parallel).start()
 
-   
 if __name__ == '__main__':
     get_all_wmtdata()
