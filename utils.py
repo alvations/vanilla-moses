@@ -3,10 +3,15 @@
 import subprocess
 import os
 
-def parallelized_download(command, files, arguments="", max_processes=2):
+def file_from_url_exists(url):
+    filename = url.rpartition('/')[2]
+    return os.path.exists(filename)
+
+def parallelized_commandline(command, files, arguments="",
+                             max_processes=2, file_exists=os.path.exists):
     processes = set()
     for name in files:
-        if os.path.exists(name):
+        if file_exists(name):
             continue
         processes.add(subprocess.Popen([command, name]))
         if len(processes) >= max_processes:
@@ -17,3 +22,6 @@ def parallelized_download(command, files, arguments="", max_processes=2):
     for p in processes:
         if p.poll() is None:
             p.wait()
+            
+def parallelized_download(command, urls):
+    paralleilized_commandline(command, urls, file_exists=file_from_url_exists)
