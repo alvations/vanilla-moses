@@ -2,34 +2,15 @@
 
 import os, subprocess
 import platform
-
 from multiprocessing import Process
+
+from utils import is_64bit_ubuntu, run_command
 
 moses_install_url = 'http://www.statmt.org/moses/?n=Development.GetStarted'
 moses_github_repo = 'https://github.com/moses-smt/mosesdecoder.git'    
 moses_training_tools = 'http://www.statmt.org/moses/RELEASE-3.0/binaries/linux-64bit/training-tools/'
 moses_sample_model = 'http://www.statmt.org/moses/download/sample-models.tgz'
 ##############################################################################
-
-def is_linux(distro, architecture):
-    if not platform.system() == 'Linux':
-        return False
-    if platform.linux_distribution()[0].lower() != distro:
-        return False
-    return platform.processor() == architecture
-    
-    
-def is_64bit_ubuntu():
-    return is_linux('ubuntu', 'x86_64')
-    
-
-def run_command(cmd):
-    proc = subprocess.Popen(cmd, shell=True, stdin=None, 
-                            #stdout=open(os.devnull,"wb"), 
-                            stderr=subprocess.STDOUT, executable="/bin/bash")
-    proc.wait()
-    return proc
-
 
 def download_moses_training_tools():
     if os.path.exists('moses-training-tools'): return;

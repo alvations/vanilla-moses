@@ -1,7 +1,8 @@
 #!/usr/bin/env python -*- coding: utf-8 -*-
 
-import subprocess
-import os
+import os, subprocess
+import platform
+from multiprocessing import Process
 
 def file_from_url_exists(url):
     filename = url.rpartition('/')[2]
@@ -27,4 +28,24 @@ def parallelized_download(command, urls, arguments="", max_processes=2):
     parallelized_commandline(command, urls, arguments=arguments, 
                              max_processes=max_processes, 
                              file_exists=file_from_url_exists) 
-                             
+
+
+def is_linux(distro, architecture):
+    if not platform.system() == 'Linux':
+        return False
+    if platform.linux_distribution()[0].lower() != distro:
+        return False
+    return platform.processor() == architecture
+    
+    
+def is_64bit_ubuntu():
+    return is_linux('ubuntu', 'x86_64')
+    
+
+def run_command(cmd):
+    proc = subprocess.Popen(cmd, shell=True, stdin=None, 
+                            #stdout=open(os.devnull,"wb"), 
+                            stderr=subprocess.STDOUT, executable="/bin/bash")
+    proc.wait()
+    return proc
+
