@@ -53,13 +53,6 @@ def install_moses():
     proc = run_command('./bjam -j4 -max-kenlm-order=20')
     proc.wait()
     
-def install_dependencies():
-    dependencies = str('g++ git subversion automake libtool zlib1g-dev '
-                       'libboost-all-dev libbz2-dev liblzma-dev '
-                       'python-dev graphviz libgoogle-perftools-dev')
-    proc = run_command('apt-get install '+dependencies)
-    proc.wait()
-    
 ##############################################################################
 
 # Checks whether it's 64-bit Ubuntu.
@@ -69,10 +62,6 @@ not_64bit_ubuntu_error_msg = str("This only works on 64-bit Ubuntu...\n"
 # Change to home diectory
 homedir = os.path.expanduser("~")
 os.chdir(homedir)
-
-# Install Moses dependencies.
-print('Installing Moses dependencies...')
-install_dependencies()
 
 # Download repo and training tools
 print('Downloading Moses repo and tools...')
