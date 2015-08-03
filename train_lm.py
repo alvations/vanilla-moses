@@ -6,5 +6,7 @@ from multiprocessing import Process
 homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
-for i in os.listdir('wmt-data'):
-    print(i)
+monodir = 'wmt-data/mono/'
+paradir = 'wmt-data/parallel'
+for i in os.listdir(monodir):
+    print(monodir + i)
