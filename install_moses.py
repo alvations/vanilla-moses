@@ -1,8 +1,8 @@
 #!/usr/bin/env python -*- coding: utf-8 -*-
 
-import os
-from subprocess import Popen
-from os.path import expanduser
+import os, subprocess
+import platform
+
 from multiprocessing import Process
 
 moses_install_url = 'http://www.statmt.org/moses/?n=Development.GetStarted'
@@ -27,20 +27,20 @@ def check_is_64bit_ubuntu(err_msg):
 
 def download_moses_training_tools():
     if not os.path.exists('moses-training-tools'): return;
-    Popen('wget -r --no-parent '+ moses_training_tools)
-    Popen.wait()
-    Popen('mv training-tools moses-training-tools')
+    subprocess.Popen('wget -r --no-parent '+ moses_training_tools)
+    subprocess.Popen.wait()
+    subprocess.Popen('mv training-tools moses-training-tools')
 
 def download_moses_github_repo():
     if not os.path.exists('mosesdecoder'): return;
-    Popen('git clone '+moses_github_repo)
+    subprocess.Popen('git clone '+moses_github_repo)
     
     
 def install_moses():
     os.chdir('mosesdecoder/')
     if not os.path.exists('bin/moses'): return;
-    Popen('./bjam -j4 -max-kenlm-order 20')
-    Popen.wait()
+    subprocess.Popen('./bjam -j4 -max-kenlm-order 20')
+    subprocess.Popen.wait()
     
     
 ##############################################################################
@@ -51,7 +51,7 @@ not_64bit_ubuntu_error_msg = str("This only works on 64-bit Ubuntu...\n"
 check_is_64bit_ubuntu(not_64bit_ubuntu_error_msg)
 
 # Change to home diectory
-homedir = expanduser("~")
+homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
 # Download repo and training tools
@@ -63,6 +63,6 @@ repo_thread.join()
 tools_thread.join()
 
 # Install moses
-install_moses()
+#install_moses()
 
 
