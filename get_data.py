@@ -1,6 +1,6 @@
 #!/usr/bin/env python -*- coding: utf-8 -*-
 
-import os
+import os, sys
 from multiprocessing import Process
 
 import wmt_data 
