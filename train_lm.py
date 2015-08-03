@@ -27,7 +27,7 @@ def tokenize_monolingual_data(langs=None):
                        'mosesdecoder/scripts/tokenizer/tokenizer.perl -threads 10 -l', _lang, 
                        '>', tokdir+_lang+'.all'])
         cmds.append(cmd)
-        
+    print(cmds)
     parallized_run_command(cmds, 10)
 
 def train_language_model(n=6, langs=None):
@@ -47,7 +47,9 @@ def train_language_model(n=6, langs=None):
         cmd+= lmdir + _lang + '.all '
         cmd+= '| gzip > ' + lmdir+ 'lm.'+n+'gram.'+_lang+'.arpa.gz'
         cmds.append(cmd)
-        
+    print(cmds)
+    parallized_run_command(cmds, 10)
+    
 if __name__ == '__main__':
     # Download all data.
     sysargv = sys.argv
