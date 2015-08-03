@@ -55,8 +55,10 @@ homedir = expanduser("~")
 os.chdir(homedir)
 
 # Download repo and training tools
-repo_thread = Process(target = download_moses_github_repo).start()
+repo_thread = Process(target = download_moses_github_repo)
 tools_thread = Process(target = download_moses_training_tools).start()
+repo_thread.start()
+tools_thread.start()
 repo_thread.join()
 tools_thread.join()
 
