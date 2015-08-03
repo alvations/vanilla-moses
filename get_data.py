@@ -34,7 +34,6 @@ def get_all_wmtdata():
     thread_mono = Process(target = get_all_wmt_monolingual)
     thread_para = Process(target = get_all_wmt_parallel)
     thread_mono.start(); thread_para.start()
-    thread_mono.wait(); thread_para.wait()
     homedir = os.path.expanduser("~")
     run_command('mv wmt-data '+homedir)
     #run_command('tar zxvf *.tgz')
