@@ -26,7 +26,7 @@ def is_64bit_ubuntu():
 def run_command(cmd):
     proc = subprocess.Popen(cmd, shell=True, stdin=None, 
                             stdout=open(os.devnull,"wb"), 
-                            stderr=STDOUT, executable="/bin/bash")
+                            stderr=subprocess.STDOUT, executable="/bin/bash")
     return proc
 
 
