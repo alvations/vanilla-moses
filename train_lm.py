@@ -52,15 +52,15 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         tokenize_monolingual_data()
         train_language_model()
-    if len(sys.argv) > 1:
+    if len(sys.argv) == 2:
+        assert int(sysargv[1])
+        tokenize_monolingual_data()
+        train_language_model(n)
+    if len(sys.argv) > 2:
         sysargv = sys.argv[1:]
         n, langs = sysargv[1], sysargv[2:]
         assert int(sysargv[1])
-        if langs == []:
-            tokenize_monolingual_data()
-            train_language_model(n)
-        else:
-            assert all(l for l in langs if l in wmt_data.wmtlangs)
-            tokenize_monolingual_data(langs)
-            train_language_model(n, langs)
-             
+        assert all(l for l in langs if l in wmt_data.wmtlangs)
+        tokenize_monolingual_data(langs)
+        train_language_model(n, langs)
+         
