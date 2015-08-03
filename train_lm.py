@@ -34,6 +34,7 @@ def train_language_model(n=6, langs=None):
     homedir = os.path.expanduser("~")
     os.chdir(homedir)
     lmdir = homedir + '/wmt-data/lm/'
+    tokdir = homedir + '/wmt-data/tok/'
     os.makedirs(lmdir, exist_ok=True)
     
     cmds = []
