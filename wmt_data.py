@@ -93,4 +93,11 @@ parallel = {
 'giga-fren':'http://www.statmt.org/wmt10/training-giga-fren.tar',
 'wiki-titles':'http://www.statmt.org/wmt15/wiki-titles.tgz'}
 
+
+parallel_langs = {
+'de':['europarl-v7', 'commoncrawl', 'news-commentary'],
+'cs':['europarl-v7', 'commoncrawl', 'news-commentary'],
+'fi':['europarl-v8', 'wiki-titles'],
+'fr':['europarl-v7', 'commoncrawl', 'news-commentary', 'UN', 'giga-fren'],
+'ru':['commoncrawl', 'news-commentary', 'wiki-titles']}
                  

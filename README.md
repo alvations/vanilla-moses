@@ -15,11 +15,25 @@ When the above commands ends with the line `this is a small house`, Moses has be
 Download Data
 ====
 
+To download WMT open data for specific languages (`cs`, `de`, `fi`, `fr`, `ru`):
+
+```
+cd vanilla-moses
+nohup python3 get_data.py de &
+```
+
+To download all WMT open data:
+
 ```
 cd vanilla-moses
 nohup python3 get_data.py &
 ```
 
+It'll be downloading 50 GB of data, it might take 4-5 hours depending on Moses' file server.
+When finished a directory named `wmt-data` will pop up in your home directory.
+
 Train Model
 ====
+
+
 

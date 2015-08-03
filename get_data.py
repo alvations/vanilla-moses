@@ -40,6 +40,19 @@ def get_all_wmtdata():
     thread_mono.join(); thread_para.join()
     homedir = os.path.expanduser("~")
     run_command('mv wmt-data '+homedir)
-    
+
 if __name__ == '__main__':
-    get_all_wmtdata()
+    # Download all data.
+    if len(sys.argv) == 1:
+        get_all_wmtdata()
+    # Download some data.
+    if len(sys.argv) > 1:
+        langs = sys.argv[1:] 
+        for lang in langs + ['en']:
+            download_wmt_monolingual(lang)
+        for lang in langs:
+            for corpus_name in wmt_data.parallel_langs[lang]:
+                download_wmt_parallel(corpus_name)
+        
+        homedir = os.path.expanduser("~")
+        run_command('mv wmt-data '+homedir)
