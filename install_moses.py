@@ -24,20 +24,20 @@ def is_64bit_ubuntu():
     
 
 def download_moses_training_tools():
-    if not os.path.exists('moses-training-tools'): return;
+    if os.path.exists('moses-training-tools'): return;
     subprocess.Popen('wget -r --no-parent '+ moses_training_tools)
     subprocess.Popen.wait()
     subprocess.Popen('mv training-tools moses-training-tools')
 
 def download_moses_github_repo():
-    if not os.path.exists('mosesdecoder'): return;
+    if nos.path.exists('mosesdecoder'): return;
     subprocess.Popen('git clone '+moses_github_repo)
     subprocess.Popen.wait()
     
     
 def install_moses():
     os.chdir('mosesdecoder/')
-    if not os.path.exists('bin/moses'): return;
+    if os.path.exists('bin/moses'): return;
     subprocess.Popen('./bjam -j4 -max-kenlm-order 20')
     subprocess.Popen.wait()
     
@@ -53,8 +53,8 @@ homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
 # Download repo and training tools
-download_moses_github_repo()
-download_moses_training_tools()
+Process(target = download_moses_github_repo).start()
+Process(target = download_moses_training_tools).start()
 
 # Install moses
-#install_moses()
+install_moses()
