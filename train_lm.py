@@ -35,6 +35,8 @@ def train_language_model(n=6, langs=None):
     os.chdir(homedir)
     lmdir = homedir + '/wmt-data/lm/'
     os.makedirs(lmdir, exist_ok=True)
+    
+    cmds = []
     for _lang in os.listdir(tokdir):
         if langs is not None and _lang not in langs:
             continue
@@ -43,22 +45,22 @@ def train_language_model(n=6, langs=None):
         cmd = 'mosesdecoder/bin/lmplz --order ' + n + ' -S 80% -T /tmp <'
         cmd+= lmdir + _lang + '.all '
         cmd+= '| gzip > ' + lmdir+ 'lm.'+n+'gram.'+_lang+'.arpa.gz'
-        run_command(cmd)
+        cmds.append(cmd)
         
 if __name__ == '__main__':
     # Download all data.
     if len(sys.argv) == 1:
         tokenize_monolingual_data()
-        #train_language_model()
+        train_language_model()
     if len(sys.argv) > 1:
         sysargv = sys.argv[1:]
         n, langs = sysargv[1], sysargv[2:]
         assert int(sysargv[1])
         if langs == []:
             tokenize_monolingual_data()
-            #train_language_model(n)
+            train_language_model(n)
         else:
             assert all(l for l in langs if l in wmt_data.wmtlangs)
             tokenize_monolingual_data(langs)
-            #train_language_model(n, langs)
+            train_language_model(n, langs)
              
