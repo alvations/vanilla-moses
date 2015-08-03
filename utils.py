@@ -49,3 +49,17 @@ def run_command(cmd):
     proc.wait()
     return proc
 
+def parallized_run_command(cmds, max_processes=2):
+    processes = set()
+    for cmd in cmds:
+        proc = subprocess.Popen(cmd, shell=True, stdin=None, 
+                                stderr=subprocess.STDOUT, executable="/bin/bash")
+        processes.add(proc)
+        if len(processes) >= max_processes:
+            os.wait()
+            processes.difference_update(
+                [p for p in processes if p.poll() is not None])
+    #Check if all the child processes were closed
+    for p in processes:
+        if p.poll() is None:
+            p.wait()
