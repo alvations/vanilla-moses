@@ -4,7 +4,7 @@ import os
 from multiprocessing import Process
 
 import wmt_data 
-from utils import parallelized_download
+from utils import parallelized_download, run_command
 
 def download_wmt_monolingual(lang, maxp=5):
     langdir = 'wmt-data/mono/' + lang + '/'
@@ -20,6 +20,7 @@ def download_wmt_parallel(corpus_name):
     os.chdir(corpusdir)
     url = wmt_data.parallel[corpus_name]
     parallelized_download('wget', [url])
+    run_command('tar zxvf *.tgz')
     os.chdir('../../..')
 
 def get_all_wmt_monolingual():
