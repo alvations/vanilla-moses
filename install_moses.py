@@ -52,12 +52,14 @@ def install_moses():
 
 def check_installed_moses():
     os.chdir(os.path.expanduser("~")+ '/mosesdecoder')
-    run_command('wget '+ moses_sample_model)
-    proc.wait('tar xzf sample-models.tgz')
+    if not os.path.exists('sample-models.tgz'):
+        run_command('wget '+ moses_sample_model)
+        run_command('tar xzf sample-models.tgz')
     os.chdir('sample-models')
     proc = run_command(str('~/mosesdecoder/bin/moses -f '
                            'phrase-model/moses.ini < phrase-model/in > out'))
-    print(proc.stdout())
+    sample_output = proc.stdout()
+    print(sample_output)    
     
 ##############################################################################
 
