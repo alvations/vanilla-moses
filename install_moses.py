@@ -41,6 +41,12 @@ def install_moses():
     subprocess.Popen('./bjam -j4 -max-kenlm-order 20')
     subprocess.Popen.wait()
     
+def install_dependencies():
+    dependencies = str('git subversion make libtool gcc g++ libboost-dev ' 
+                       'tcl-dev tk-dev zlib1g-dev libbz2-dev python-dev')
+    subprocess.Popen('apt-get install '+dependencies)
+    subprocess.Popen.wait()
+    
     
 ##############################################################################
 
@@ -51,6 +57,9 @@ not_64bit_ubuntu_error_msg = str("This only works on 64-bit Ubuntu...\n"
 # Change to home diectory
 homedir = os.path.expanduser("~")
 os.chdir(homedir)
+
+# Install Moses dependencies.
+install_dependencies()
 
 # Download repo and training tools
 Process(target = download_moses_github_repo).start()
