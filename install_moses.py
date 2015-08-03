@@ -32,12 +32,15 @@ def run_command(cmd):
 
 def download_moses_training_tools():
     if os.path.exists('moses-training-tools'): return;
-    proc = run_command('wget -r --no-parent '+ moses_training_tools)
+    proc = run_command('wget -r --no-parent --reject "index.html*" %s' % 
+                       moses_training_tools)
     proc.wait()
-    proc = run_command('mv training-tools moses-training-tools')
+    path_to_training_tool = str('www.statmt.org/moses/RELEASE-3.0/binaries/'
+                                'linux-64bit/training-tools/')
+    proc = run_command('mv '+ path_to_training_tools + ' moses-training-tools')
 
 def download_moses_github_repo():
-    if nos.path.exists('mosesdecoder'): return;
+    if os.path.exists('mosesdecoder'): return;
     proc = run_command('git clone '+moses_github_repo)
     proc.wait()
     
