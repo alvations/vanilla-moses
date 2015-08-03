@@ -25,7 +25,7 @@ def is_64bit_ubuntu():
 
 def run_command(cmd):
     proc = subprocess.Popen(cmd, shell=True, stdin=None, 
-                            stdout=open(os.devnull,"wb"), 
+                            #stdout=open(os.devnull,"wb"), 
                             stderr=subprocess.STDOUT, executable="/bin/bash")
     return proc
 
@@ -69,13 +69,16 @@ homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
 # Install Moses dependencies.
+print('Installing Moses dependencies...')
 install_dependencies()
 
 # Download repo and training tools
+print('Downloading Moses repo and tools...')
 repo_thread = Process(target = download_moses_github_repo)
 tool_thread = Process(target = download_moses_training_tools)
 repo_thread.start(); tool_thread.start()
 repo_thread.join(); tool_thread.join()
 
 # Install moses
+print('Installing Moses...')
 install_moses()
