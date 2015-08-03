@@ -23,30 +23,37 @@ def is_64bit_ubuntu():
     return is_linux('ubuntu', 'x86_64')
     
 
+def run_command(cmd):
+    proc = subprocess.Popen(cmd, shell=True, stdin=None, 
+                            stdout=open(os.devnull,"wb"), 
+                            stderr=STDOUT, executable="/bin/bash")
+    return proc
+
+
 def download_moses_training_tools():
     if os.path.exists('moses-training-tools'): return;
-    subprocess.Popen('wget -r --no-parent '+ moses_training_tools)
-    subprocess.Popen.wait()
-    subprocess.Popen('mv training-tools moses-training-tools')
+    proc = run_command('wget -r --no-parent '+ moses_training_tools)
+    proc.wait()
+    proc = run_command('mv training-tools moses-training-tools')
 
 def download_moses_github_repo():
     if nos.path.exists('mosesdecoder'): return;
-    subprocess.Popen('git clone '+moses_github_repo)
-    subprocess.Popen.wait()
+    proc = run_command('git clone '+moses_github_repo)
+    proc.wait()
     
     
 def install_moses():
     os.chdir('mosesdecoder/')
     if os.path.exists('bin/moses'): return;
-    subprocess.Popen('./bjam -j4 -max-kenlm-order 20')
-    subprocess.Popen.wait()
+    proc = run_command('./bjam -j4 -max-kenlm-order 20')
+    proc.wait()
     
 def install_dependencies():
     dependencies = str('g++ git subversion automake libtool zlib1g-dev '
                        'libboost-all-dev libbz2-dev liblzma-dev '
                        'python-dev graphviz libgoogle-perftools-dev')
-    subprocess.Popen('apt-get install '+dependencies)
-    subprocess.Popen.wait()
+    proc = run_command('apt-get install '+dependencies)
+    proc.wait()
     
 ##############################################################################
 
