@@ -24,4 +24,4 @@ def parallelized_commandline(command, files, arguments="",
             p.wait()
             
 def parallelized_download(command, urls):
-    paralleilized_commandline(command, urls, file_exists=file_from_url_exists)
+    parallelized_commandline(command, urls, file_exists=file_from_url_exists)
