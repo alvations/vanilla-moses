@@ -57,7 +57,7 @@ def install_dependencies():
     dependencies = str('g++ git subversion automake libtool zlib1g-dev '
                        'libboost-all-dev libbz2-dev liblzma-dev '
                        'python-dev graphviz libgoogle-perftools-dev')
-    proc = run_command('sudo apt-get install '+dependencies)
+    proc = run_command('apt-get install '+dependencies)
     proc.wait()
     
 ##############################################################################
@@ -72,7 +72,7 @@ os.chdir(homedir)
 
 # Install Moses dependencies.
 print('Installing Moses dependencies...')
-check_dependencies()
+install_dependencies()
 
 # Download repo and training tools
 print('Downloading Moses repo and tools...')
