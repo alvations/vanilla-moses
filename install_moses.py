@@ -50,14 +50,14 @@ def download_moses_github_repo():
 def install_moses():
     os.chdir('mosesdecoder/')
     if os.path.exists('bin/moses'): return;
-    proc = run_command('./bjam -j4 -max-kenlm-order 20')
+    proc = run_command('./bjam -j4 -max-kenlm-order=20')
     proc.wait()
     
 def install_dependencies():
     dependencies = str('g++ git subversion automake libtool zlib1g-dev '
                        'libboost-all-dev libbz2-dev liblzma-dev '
                        'python-dev graphviz libgoogle-perftools-dev')
-    proc = run_command('apt-get install '+dependencies)
+    proc = run_command('sudo apt-get install '+dependencies)
     proc.wait()
     
 ##############################################################################
@@ -72,7 +72,7 @@ os.chdir(homedir)
 
 # Install Moses dependencies.
 print('Installing Moses dependencies...')
-install_dependencies()
+check_dependencies()
 
 # Download repo and training tools
 print('Downloading Moses repo and tools...')
