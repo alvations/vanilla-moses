@@ -17,12 +17,9 @@ def download_wmt_monolingual(lang, maxp=5):
 def download_wmt_parallel(corpus_name):    
     corpusdir = 'wmt-data/parallel/' + corpus_name + '/'
     os.makedirs(corpusdir, exist_ok=True)
-    os.chdir(corpusdir)
+    os.chdir(corpusdir) 
     url = wmt_data.parallel[corpus_name]
     parallelized_download('wget', [url])
-    run_command('tar zxvf *.tgz')
-    run_command('tar -xvf *.tar')
-    #run_command('tar -xvf *.tar.gz')
     os.chdir('../../..')
 
 def get_all_wmt_monolingual():
@@ -35,11 +32,14 @@ def get_all_wmt_parallel():
 
 def get_all_wmtdata():
     thread_mono = Process(target = get_all_wmt_monolingual)
-    thread_para = Process(target = get_all_wmt_parallel).start()
+    thread_para = Process(target = get_all_wmt_parallel)
     thread_mono.start(); thread_para.start()
     thread_mono.wait(); thread_para.wait()
     homedir = os.path.expanduser("~")
     run_command('mv wmt-data '+homedir)
-
+    #run_command('tar zxvf *.tgz')
+    #run_command('tar -xvf *.tar')
+    #run_command('tar -xvf *.tar.gz')
+    
 if __name__ == '__main__':
     get_all_wmtdata()
