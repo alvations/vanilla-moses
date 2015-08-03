@@ -32,8 +32,10 @@ def get_all_wmt_parallel():
         download_wmt_parallel(corpus_name)
 
 def get_all_wmtdata():
-    thread_mono = Process(target = get_all_wmt_monolingual).start()
+    thread_mono = Process(target = get_all_wmt_monolingual)
     thread_para = Process(target = get_all_wmt_parallel).start()
+    thread_mono.start(); thread_para.start()
+    thread_mono.wait(); thread_para.wait()
     homedir = os.path.expanduser("~")
     run_command('mv wmt-data '+homedir)
 
