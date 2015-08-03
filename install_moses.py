@@ -32,6 +32,7 @@ def download_moses_training_tools():
 def download_moses_github_repo():
     if not os.path.exists('mosesdecoder'): return;
     subprocess.Popen('git clone '+moses_github_repo)
+    subprocess.Popen.wait()
     
     
 def install_moses():
@@ -52,12 +53,8 @@ homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
 # Download repo and training tools
-repo_thread = Process(target = download_moses_github_repo)
-tools_thread = Process(target = download_moses_training_tools)
-repo_thread.start()
-tools_thread.start()
-repo_thread.join()
-tools_thread.join()
+Process(target = download_moses_github_repo).start()
+Process(target = download_moses_training_tools).start()
 
 # Install moses
 #install_moses()
