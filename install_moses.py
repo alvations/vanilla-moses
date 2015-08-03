@@ -11,18 +11,16 @@ moses_training_tools = 'http://www.statmt.org/moses/RELEASE-3.0/binaries/linux-6
 
 ##############################################################################
 
-def check_is_linux(distro, architecture, 
-                   err_msg="SNL: Something-else, Not Linux!!"):
-    try:
-        this_os = Popen('lsb_release -d').read()
-        this_arch = Popen('uname -a').read()
-        
-        assert distro in this_os and architecture in this_arch, err_msg
-    except:
-        print(err_msg)
-
-def check_is_64bit_ubuntu(err_msg):
-    check_is_linux('Ubuntu', 'x86_64', err_msg)
+def is_linux(distro, architecture):
+    if not platform.system() == 'Linux':
+        return False
+    if platform.linux_distribution()[0].lower() != distro:
+        return False
+    return platform.processor() == architecture
+    
+    
+def is_64bit_ubuntu():
+    return is_linux('ubuntu', 'x86_64')
     
 
 def download_moses_training_tools():
@@ -45,10 +43,9 @@ def install_moses():
     
 ##############################################################################
 
-# Checks whether it's 64-bit Ubuntu. 
+# Checks whether it's 64-bit Ubuntu.
 not_64bit_ubuntu_error_msg = str("This only works on 64-bit Ubuntu...\n" 
                                   "For other OS See %s" % moses_install_url)
-check_is_64bit_ubuntu(not_64bit_ubuntu_error_msg)
 
 # Change to home diectory
 homedir = os.path.expanduser("~")
@@ -64,5 +61,3 @@ tools_thread.join()
 
 # Install moses
 #install_moses()
-
-
