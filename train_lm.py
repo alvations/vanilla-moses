@@ -40,11 +40,11 @@ def train_language_model(n=6, langs=None, parallelized=False):
     for _lang in os.listdir(tokdir):
         if langs is not None and _lang not in langs:
             continue
-        if os.path.exists(lmdir+ 'lm.'+n+'gram.'+_lang[:-4]+'.arpa.gz'):
+        if os.path.exists(lmdir+ 'lm.'+str(n)+'gram.'+_lang[:-4]+'.arpa.gz'):
             continue
-        cmd = 'mosesdecoder/bin/lmplz --order ' + n + ' -S 80% -T /tmp <'
+        cmd = 'mosesdecoder/bin/lmplz --order ' + str(n) + ' -S 80% -T /tmp <'
         cmd+= tokdir + _lang
-        cmd+= '| gzip > ' + lmdir+ 'lm.'+n+'gram.'+_lang[:-4]+'.arpa.gz'
+        cmd+= '| gzip > ' + lmdir+ 'lm.'+str(n)+'gram.'+_lang[:-4]+'.arpa.gz'
         cmds.append(cmd)
 
     for cmd in cmds:
