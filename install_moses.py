@@ -73,7 +73,7 @@ install_dependencies()
 
 # Download repo and training tools
 repo_thread = Process(target = download_moses_github_repo)
-tool_thread = Process(target = download_moses_training_tools).start()
+tool_thread = Process(target = download_moses_training_tools)
 repo_thread.start(); tool_thread.start()
 repo_thread.join(); tool_thread.join()
 
