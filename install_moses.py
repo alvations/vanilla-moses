@@ -56,7 +56,7 @@ os.chdir(homedir)
 
 # Download repo and training tools
 repo_thread = Process(target = download_moses_github_repo)
-tools_thread = Process(target = download_moses_training_tools).start()
+tools_thread = Process(target = download_moses_training_tools)
 repo_thread.start()
 tools_thread.start()
 repo_thread.join()
