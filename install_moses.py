@@ -58,8 +58,8 @@ def check_installed_moses():
     os.chdir('sample-models')
     proc = run_command(str('~/mosesdecoder/bin/moses -f '
                            'phrase-model/moses.ini < phrase-model/in > out'))
-    sample_output = proc.stdout()
-    print(sample_output)    
+    print(open('out', 'r').read())
+
     
 ##############################################################################
 
