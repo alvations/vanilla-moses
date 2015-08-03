@@ -58,9 +58,8 @@ def check_installed_moses():
     os.chdir('sample-models')
     proc = run_command(str('~/mosesdecoder/bin/moses -f '
                            'phrase-model/moses.ini < phrase-model/in > out'))
-    print(open('out', 'r').read())
+    print(open('out', 'r').read().strip())
 
-    
 ##############################################################################
 
 # Checks whether it's 64-bit Ubuntu.

@@ -10,6 +10,8 @@ cd vanilla-moses
 python3 install_moses.py
 ```
 
+When the above commands ends with the line `this is a small house`, Moses has been installed properly.
+
 Download Data
 ====
 
