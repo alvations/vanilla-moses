@@ -38,7 +38,9 @@ def download_moses_training_tools():
     path_to_training_tools = str('www.statmt.org/moses/RELEASE-3.0/binaries/'
                                 'linux-64bit/training-tools/')
     proc = run_command('mv '+ path_to_training_tools + ' moses-training-tools')
-
+    proc.wait()
+    proc = run_command('rm -rf www.statmt.org/')
+    
 def download_moses_github_repo():
     if os.path.exists('mosesdecoder'): return;
     proc = run_command('git clone '+moses_github_repo)
