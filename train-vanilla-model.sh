@@ -1,6 +1,5 @@
 LANG_F=id
 LANG_E=en
-LANG_NOT_EN=id
 BASEDIR=/home/liling/BPPT_CORPUS/
 CORPUS=${BASEDIR}/corpus.tok/train-clean
 DEV_F=${BASEDIR}/corpus.tok/dev.${LANG_F} 
