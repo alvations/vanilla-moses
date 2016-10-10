@@ -2,6 +2,7 @@ LANG_F=id
 LANG_E=en
 BASEDIR=/home/liling/BPPT_CORPUS/
 CORPUS=${BASEDIR}/corpus.tok/train-clean
+CORPUS_LM=${BASEDIR}/corpus.tok/traindev
 DEV_F=${BASEDIR}/corpus.tok/dev.${LANG_F} 
 DEV_E=${BASEDIR}/corpus.tok/dev.${LANG_E} 
 TEST=${BASEDIR}/corpus.tok/test.${LANG_F} 
@@ -25,8 +26,9 @@ cd phrasemodel
 mkdir -p ${TRAINING_DIR}
 
 # Build Language model
-LM_ARPA=‘pwd‘/${TRAINING_DIR}/lm/lm.${LANG_E}.arpa.gz
-LM_FILE=‘pwd‘/${TRAINING_DIR}/lm/lm.${LANG_E}.kenlm
+mkdir -p ${TRAINING_DIR}/lm/
+LM_ARPA=`pwd`/${TRAINING_DIR}/lm/lm.${LANG_E}.arpa.gz
+LM_FILE=`pwd`/${TRAINING_DIR}/lm/lm.${LANG_E}.kenlm
 
 ${MOSES_BIN_DIR}/lmplz --order ${LM_ORDER} -S 80% -T /tmp \
 < ${CORPUS_LM}.${LANG_E} | gzip > ${LM_ARPA}
@@ -40,7 +42,7 @@ ${MOSES_SCRIPT}/training/train-model-10c.perl \
   --model-dir `pwd`/${MODEL_DIR} \
   --corpus ${CORPUS} \
   --external-bin-dir ${EXT_BIN_DIR} \
-  --mgiza -mgiza-cpus 10 \
+  --mgiza -mgiza-cpus ${JOBS} \
   --f ${LANG_F} \
   --e ${LANG_E} \
   --parallel \
