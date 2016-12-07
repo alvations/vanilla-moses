@@ -5,6 +5,9 @@ Install
 
 ```
 sudo apt-get install g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python-dev graphviz libgoogle-perftools-dev
+sudo apt-get install python3-dev python3-pip
+pip3 install beautifulsoup4
+
 git clone https://github.com/alvations/vanilla-moses.git
 cd vanilla-moses
 python3 install_moses.py
