@@ -81,7 +81,7 @@ monolingual = {
        'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2012.cs.shuffled.gz', 
        'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2013.cs.shuffled.gz', 
        'http://www.statmt.org/wmt15/training-monolingual-news-crawl-v2/news.2014.cs.shuffled.v2.gz', 
-       'http://www.statmt.org/wmt15/training-monolingual-news-crawl/news.2014.cs.shuffled.gz']
+       'http://www.statmt.org/wmt15/training-monolingual-news-crawl/news.2014.cs.shuffled.gz'],
 
 'es': ['http://www.statmt.org/wmt15/training-monolingual-nc-v10/news-commentary-v10.es.gz', 
        'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2007.es.shuffled.gz', 
