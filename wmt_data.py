@@ -103,7 +103,7 @@ parallel = {
 'commoncrawl':'http://www.statmt.org/wmt13/training-parallel-commoncrawl.tgz',
 'UN':'http://www.statmt.org/wmt13/training-parallel-un.tgz',
 'news-commentary':'http://www.statmt.org/wmt15/training-parallel-nc-v10.tgz',
-'news-commentary-wmt13':'http://www.statmt.org/wmt13/training-parallel-nc-v8.tgz'
+'news-commentary-wmt13':'http://www.statmt.org/wmt13/training-parallel-nc-v8.tgz',
 'giga-fren':'http://www.statmt.org/wmt10/training-giga-fren.tar',
 'wiki-titles':'http://www.statmt.org/wmt15/wiki-titles.tgz'}
 
