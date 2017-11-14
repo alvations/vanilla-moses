@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 wmt15_page = 'http://www.statmt.org/wmt15/translation-task.html'
 wmt15_soup = BeautifulSoup(urllib.request.urlopen(wmt15_page).read())
 
-wmtlangs = ['cs', 'de', 'en', 'fi', 'fr', 'ru']
+wmtlangs = ['cs', 'de', 'en', 'fi', 'fr', 'ru', 'es']
 
 '''
 # Code to get the static lang2mono.
@@ -81,7 +81,20 @@ monolingual = {
        'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2012.cs.shuffled.gz', 
        'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2013.cs.shuffled.gz', 
        'http://www.statmt.org/wmt15/training-monolingual-news-crawl-v2/news.2014.cs.shuffled.v2.gz', 
-       'http://www.statmt.org/wmt15/training-monolingual-news-crawl/news.2014.cs.shuffled.gz']}
+       'http://www.statmt.org/wmt15/training-monolingual-news-crawl/news.2014.cs.shuffled.gz']
+
+'es': ['http://www.statmt.org/wmt15/training-monolingual-nc-v10/news-commentary-v10.es.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2007.es.shuffled.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2008.es.shuffled.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2009.es.shuffled.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2010.es.shuffled.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2011.es.shuffled.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2012.es.shuffled.gz', 
+       'http://www.statmt.org/wmt15/../wmt14/training-monolingual-news-crawl/news.2013.es.shuffled.gz',
+      ]
+
+
+}
 
 
 parallel = {
@@ -90,6 +103,7 @@ parallel = {
 'commoncrawl':'http://www.statmt.org/wmt13/training-parallel-commoncrawl.tgz',
 'UN':'http://www.statmt.org/wmt13/training-parallel-un.tgz',
 'news-commentary':'http://www.statmt.org/wmt15/training-parallel-nc-v10.tgz',
+'news-commentary-wmt13':'http://www.statmt.org/wmt13/training-parallel-nc-v8.tgz'
 'giga-fren':'http://www.statmt.org/wmt10/training-giga-fren.tar',
 'wiki-titles':'http://www.statmt.org/wmt15/wiki-titles.tgz'}
 
@@ -99,5 +113,7 @@ parallel_langs = {
 'cs':['europarl-v7', 'commoncrawl', 'news-commentary'],
 'fi':['europarl-v8', 'wiki-titles'],
 'fr':['europarl-v7', 'commoncrawl', 'news-commentary', 'UN', 'giga-fren'],
-'ru':['commoncrawl', 'news-commentary', 'wiki-titles']}
+'ru':['commoncrawl', 'news-commentary', 'wiki-titles'],
+'es':['europarl-v7', 'commoncrawl', 'news-commentary-wmt13'],
+}
                  
