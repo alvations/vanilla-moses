@@ -14,7 +14,6 @@ git clone https://github.com/alvations/vanilla-moses.git
 cd vanilla-moses
 python3 install_moses.py
 
-python3 install_clustercat.py
 ```
 
 When the above commands ends with the line `this is a small house`, Moses has been installed properly.
